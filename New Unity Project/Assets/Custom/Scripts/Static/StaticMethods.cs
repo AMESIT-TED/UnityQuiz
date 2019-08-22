@@ -7,6 +7,8 @@ public static class StaticMethods {
 
         _button.onClick.AddListener(() => {
             _method();
+          
         });
     }
+   
 }

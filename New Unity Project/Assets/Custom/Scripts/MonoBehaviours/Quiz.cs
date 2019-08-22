@@ -19,11 +19,12 @@ public class Quiz : MonoBehaviour {
     public Text txtQuestion;
 
     private int progress;
+    private int answerCount = 0;
 
     private void Awake() {
         StaticMethods.AssignButtonAction(btnStart, AskQuestion);
         StaticMethods.AssignButtonAction(btnGood, Answer);
-        StaticMethods.AssignButtonAction(btnBad, Answer);
+        StaticMethods.AssignButtonAction(btnBad, IncorrectAnswer);
     }
 
     private void ShowIntroduction() {
@@ -37,6 +38,12 @@ public class Quiz : MonoBehaviour {
     }
 
     private void Answer() {
+     //if i click the good button increment the answercount... just do not know how to acess the good button...
+        AskQuestion();
+        answerCount++;
+    }
+
+    private void IncorrectAnswer(){
         AskQuestion();
     }
 
@@ -53,5 +60,13 @@ public class Quiz : MonoBehaviour {
     private void EndQuiz() {
         gameObject.SetActive(false);
         finishScreen.gameObject.SetActive(true);
+           Text _finishText = finishScreen.GetComponentInChildren<Text>();
+        Debug.Log(questions.Length);
+        if(answerCount == 2){
+           _finishText.text = "win";
+
+        } else{
+           _finishText.text = "Lose";
+        }
     }
 }

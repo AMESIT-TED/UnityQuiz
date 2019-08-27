@@ -1,4 +1,6 @@
-﻿using UnityEngine.Events;
+﻿using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.Events;
 using UnityEngine.UI;
 
 public static class StaticMethods {
@@ -7,8 +9,15 @@ public static class StaticMethods {
 
         _button.onClick.AddListener(() => {
             _method();
-          
         });
     }
    
+    public static void ShuffleList<T>(List<T> list) {
+        for (int i = 0; i < list.Count; i++) {
+            T temp = list[i];
+            int randomIndex = Random.Range(i, list.Count);
+            list[i] = list[randomIndex];
+            list[randomIndex] = temp;
+        }
+    }
 }

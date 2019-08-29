@@ -19,15 +19,22 @@ public class Quiz : MonoBehaviour {
     public Button[] answerButtons;
     public Text txtQuestion;
 
-    private int progress;
+    public Text txtQuestionCount;
+
+    private int progress = 0;
     private int answerCount = 0;
+
     private void Update() {
-        Debug.Log(answerCount);
+      if(Input.GetKeyDown("space") && progress > 0){
+          GoBack();
+      }
+      Debug.Log(progress);
     }
 
     private void Awake() {
         StaticMethods.AssignButtonAction(btnStart, AskQuestion);
         answerButtons = pnlQuestion.GetComponentsInChildren<Button>(true);
+
     }
 
     private void ShowIntroduction() {
@@ -38,6 +45,8 @@ public class Quiz : MonoBehaviour {
     private void ShowQuestion() {
         pnlIntroduction.gameObject.SetActive(false);
         pnlQuestion.gameObject.SetActive(true);
+        txtQuestionCount.text = "You are on question: " + (progress + 1) + " out of " + questions.Length;
+
     }
 
     private void Answer() {
@@ -84,6 +93,12 @@ public class Quiz : MonoBehaviour {
     private void AssignAnswer(int buttonIndex, int _i) {
         StaticMethods.AssignButtonAction(answerButtons[buttonIndex], (_i == 0) ? (UnityAction)Answer : IncorrectAnswer);
         answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = questions[progress].answers[_i];
+    }
+    
+    private void GoBack(){
+            txtQuestion.text = questions[progress--].sQuestion;
+            progress-=1;
+
     }
 
     private void EndQuiz() {

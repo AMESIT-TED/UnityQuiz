@@ -14,6 +14,7 @@ public class Quiz : MonoBehaviour {
     public Question[] questions;
     public RectTransform pnlIntroduction;
     public RectTransform pnlQuestion;
+    public RectTransform pnlAnswerButtons;
     public FinishScreen finishScreen;
     public Button btnStart;
     public Button[] answerButtons;
@@ -25,15 +26,14 @@ public class Quiz : MonoBehaviour {
     private int answerCount = 0;
 
     private void Update() {
-      if(Input.GetKeyDown("space") && progress > 0){
-          GoBack();
-      }
-      Debug.Log(progress);
+      if(Input.GetKeyDown("b") && progress > 0){
+            AskQuestion(true);
+        }
     }
 
     private void Awake() {
-        StaticMethods.AssignButtonAction(btnStart, AskQuestion);
-        answerButtons = pnlQuestion.GetComponentsInChildren<Button>(true);
+        StaticMethods.AssignButtonAction(btnStart, () => { AskQuestion(); } );
+        answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
 
     }
 
@@ -45,8 +45,6 @@ public class Quiz : MonoBehaviour {
     private void ShowQuestion() {
         pnlIntroduction.gameObject.SetActive(false);
         pnlQuestion.gameObject.SetActive(true);
-        txtQuestionCount.text = "You are on question: " + (progress + 1) + " out of " + questions.Length;
-
     }
 
     private void Answer() {
@@ -58,8 +56,12 @@ public class Quiz : MonoBehaviour {
         AskQuestion();
     }
 
-    private void AskQuestion() {
+    private void AskQuestion(bool _isGoBack = false) {
         ShowQuestion();
+
+        progress += _isGoBack ? -2 : 0; 
+        
+        Debug.Log(txtQuestionCount.text = "You are on: " + (1+progress)+ " out of: " + questions.Length);
 
         if (progress == questions.Length) {
             EndQuiz();
@@ -82,10 +84,11 @@ public class Quiz : MonoBehaviour {
 
     private void DebugAnswers(List<int> ints) {
         for (int i = 0; i < answerButtons.Length; i++) {
-            answerButtons[i].GetComponent<Image>().color = Color.grey;
+            Image image = answerButtons[i].GetComponent<Image>();
+            image.color = Color.grey;
 
             if (ints[i] == 0) {
-                answerButtons[i].GetComponent<Image>().color = Color.green;
+                image.color = Color.green;
             }
         }
     }
@@ -93,12 +96,6 @@ public class Quiz : MonoBehaviour {
     private void AssignAnswer(int buttonIndex, int _i) {
         StaticMethods.AssignButtonAction(answerButtons[buttonIndex], (_i == 0) ? (UnityAction)Answer : IncorrectAnswer);
         answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = questions[progress].answers[_i];
-    }
-    
-    private void GoBack(){
-            txtQuestion.text = questions[progress--].sQuestion;
-            progress-=1;
-
     }
 
     private void EndQuiz() {

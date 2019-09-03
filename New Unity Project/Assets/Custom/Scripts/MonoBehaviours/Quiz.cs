@@ -9,6 +9,7 @@ public class Quiz : MonoBehaviour {
     public class Question {
         public string sQuestion;
         public string[] answers;
+        public bool isCorrect;
     }
 
     public Question[] questions;
@@ -18,6 +19,7 @@ public class Quiz : MonoBehaviour {
     public FinishScreen finishScreen;
     public Button btnStart;
     public Button[] answerButtons;
+    public Button btnBack;
     public Text txtQuestion;
 
     public Text txtQuestionCount;
@@ -33,6 +35,7 @@ public class Quiz : MonoBehaviour {
 
     private void Awake() {
         StaticMethods.AssignButtonAction(btnStart, () => { AskQuestion(); } );
+        StaticMethods.AssignButtonAction(btnBack,() => {AskQuestion(true);});
         answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
 
     }
@@ -47,8 +50,10 @@ public class Quiz : MonoBehaviour {
         pnlQuestion.gameObject.SetActive(true);
     }
 
-    private void Answer() {
+    private void CorrectAnswer() {
         answerCount++;
+        //Is this it?
+        questions[progress].isCorrect = true;
         AskQuestion();
     }
 
@@ -94,11 +99,16 @@ public class Quiz : MonoBehaviour {
     }
 
     private void AssignAnswer(int buttonIndex, int _i) {
-        StaticMethods.AssignButtonAction(answerButtons[buttonIndex], (_i == 0) ? (UnityAction)Answer : IncorrectAnswer);
+        StaticMethods.AssignButtonAction(answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
         answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = questions[progress].answers[_i];
     }
 
     private void EndQuiz() {
+          //Check pls"
+            
+
+
+
         gameObject.SetActive(false);
         finishScreen.gameObject.SetActive(true);
            Text _finishText = finishScreen.GetComponentInChildren<Text>();

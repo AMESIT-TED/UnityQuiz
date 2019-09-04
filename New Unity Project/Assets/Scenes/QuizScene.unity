@@ -683,16 +683,25 @@ MonoBehaviour:
     - 2
     - 15
     - 12
+    isCorrect: 0
   - sQuestion: 2 + 2?
     answers:
     - 4
     - 333
     - 25
+    isCorrect: 0
   - sQuestion: 3 + 3?
     answers:
     - 6
     - 99
     - 66
+    isCorrect: 0
+  - sQuestion: 4+4?
+    answers:
+    - 8
+    - 24
+    - 88
+    isCorrect: 0
   pnlIntroduction: {fileID: 1768935452}
   pnlQuestion: {fileID: 1842376942}
   pnlAnswerButtons: {fileID: 1961207855}

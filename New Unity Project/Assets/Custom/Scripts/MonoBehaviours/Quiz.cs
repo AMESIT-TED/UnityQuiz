@@ -3,17 +3,13 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
+using UnityEngine.Video;
+
+
+
 
 public class Quiz : MonoBehaviour
 {
-    [Serializable]
-    public class Question
-    {
-        public string sQuestion;
-        public string[] answers;
-        public bool isCorrect = false;
-    }
-
     public Question[] questions;
     public RectTransform pnlIntroduction;
     public RectTransform pnlQuestion;
@@ -25,16 +21,21 @@ public class Quiz : MonoBehaviour
     public Text txtQuestion;
     public Text txtQuestionCount;
 
+    public enum QuestionType
+    {
+        Text,
+        Image,
+        Video
+    }
+    public QuestionType type = QuestionType.Text;
+
+
     private int progress = 0;
     private int answerCount = 0;
 
     private void Update()
     {
-        if (Input.GetKeyDown("b") && progress > 0)
-        {
-            AskQuestion(true);
-        }
-        // Debug.Log("list of correct: " + listCorrectAnswers.Count);
+
 
     }
 
@@ -57,7 +58,8 @@ public class Quiz : MonoBehaviour
         pnlQuestion.gameObject.SetActive(true);
     }
 
-    private void CorrectAnswer() {
+    private void CorrectAnswer()
+    {
         answerCount++;
         // We've already incremented, set data for the question we just answered.
         questions[progress - 1].isCorrect = true;
@@ -111,7 +113,9 @@ public class Quiz : MonoBehaviour
     private void AssignAnswer(int buttonIndex, int _i)
     {
         StaticMethods.AssignButtonAction(answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
-        answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = questions[progress].answers[_i];
+        //TODO this is bugging the array
+        answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = questions[progress].sAnswers[_i];
+
     }
 
     private void EndQuiz()
@@ -132,3 +136,15 @@ public class Quiz : MonoBehaviour
         }
     }
 }
+[Serializable]
+public class Question
+{
+
+    public string sQuestion;
+    public string[] sAnswers;
+    //public Image[] iAnswers;
+    //  public VideoClip[] vAnswers;
+    public bool isCorrect = false;
+
+}
+

@@ -33,11 +33,7 @@ public class Quiz : MonoBehaviour
     private int progress = 0;
     private int answerCount = 0;
 
-    private void Update()
-    {
-
-
-    }
+    
 
     private void Awake()
     {
@@ -114,8 +110,10 @@ public class Quiz : MonoBehaviour
     {
         StaticMethods.AssignButtonAction(answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
         //TODO this is bugging the array
-        answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = questions[progress].sAnswers[_i];
+        answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text =   questions[progress].sAnswers[_i];
 
+        //This is giving me problems
+        Debug.Log(questions[progress].sAnswers[_i]);
     }
 
     private void EndQuiz()

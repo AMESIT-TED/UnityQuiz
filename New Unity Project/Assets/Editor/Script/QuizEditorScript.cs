@@ -14,8 +14,12 @@ public class QuizEditorScript : Editor
 
     //The type of enum and its features
 
-         _quizType = (Type)EditorGUILayout.EnumPopup("Type of Quiz", myQuizScript.type);
+       myQuizScript.type = (Quiz.QuestionType)EditorGUILayout.EnumPopup("Question Type", myQuizScript.type);
 
+      if(myQuizScript.type== Quiz.QuestionType.Text){
+      //  myQuizScript.questions = EditorGUI.PropertyField(,myQuizScript.questions);
+     Debug.Log("yay");
 
    }
-}
+   }
+   }

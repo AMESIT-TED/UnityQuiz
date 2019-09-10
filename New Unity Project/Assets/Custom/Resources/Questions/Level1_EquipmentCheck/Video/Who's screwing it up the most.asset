@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ec29b589f338a243a06c6a473569904, type: 3}
+  m_Name: Who's screwing it up the most
+  m_EditorClassIdentifier: 
+  question: 
+  answers:
+    correctAnswer: {fileID: 32900000, guid: 51aaabb56cb5fca489dbc932956b119d, type: 3}
+    decoyAnswerA: {fileID: 32900000, guid: 51aaabb56cb5fca489dbc932956b119d, type: 3}
+    decoyAnswerB: {fileID: 32900000, guid: 51aaabb56cb5fca489dbc932956b119d, type: 3}

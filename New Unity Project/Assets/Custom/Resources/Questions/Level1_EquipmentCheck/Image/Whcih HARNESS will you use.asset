@@ -1,0 +1,19 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 968592d6439e34c419a053ff15262f83, type: 3}
+  m_Name: Whcih HARNESS will you use
+  m_EditorClassIdentifier: 
+  question: sfddsfsdfsfssdf
+  answers:
+    correctAnswer: {fileID: 21300000, guid: 73a4f5c0975ad984f9c6b692c58e1314, type: 3}
+    decoyAnswerA: {fileID: 21300000, guid: 50c59cf5f975ed0489554ea5e50efaee, type: 3}
+    decoyAnswerB: {fileID: 21300000, guid: 7770cd8bf95e2e24c80affda1ca56c8e, type: 3}

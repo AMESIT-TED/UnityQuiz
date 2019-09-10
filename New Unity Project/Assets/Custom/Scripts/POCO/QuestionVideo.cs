@@ -1,8 +1,9 @@
 ﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.Video;
 
-[Serializable]
+[Serializable, CreateAssetMenu(fileName = "New Video Question", menuName = "Question/Video")]
 public class QuestionVideo : Question {
     [Serializable]
     public class Answers {
@@ -18,6 +19,10 @@ public class QuestionVideo : Question {
     public Answers answers;
 
     public override void AskQuestion() {
+        base.AskQuestion();
+
+        // TODO: Turn the required panel on.
+        Debug.Log("Video: " + answers.correctAnswer.name);
     }
 
     public override void AssignAnswer(int buttonIndex, int _i) {

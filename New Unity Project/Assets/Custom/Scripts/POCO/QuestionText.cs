@@ -1,9 +1,11 @@
 ﻿using System;
+using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.UI;
 
-[Serializable]
+[Serializable, CreateAssetMenu(fileName = "New Text Question", menuName = "Question/Text")]
 public class QuestionText : Question {
+    
     [Serializable]
     public class Answers {
         public string correctAnswer;
@@ -15,9 +17,16 @@ public class QuestionText : Question {
         }
     }
 
+    public static QuestionText instance;
+
     public Answers answers;
+    
 
     public override void AskQuestion() {
+        base.AskQuestion();
+
+        // TODO: Turn the required panel on.
+        Debug.Log("Text: " + answers.correctAnswer);
     }
 
     public override void AssignAnswer(int buttonIndex, int _i) {

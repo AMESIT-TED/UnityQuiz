@@ -17,7 +17,7 @@ public class QuestionText : Question {
         }
     }
 
-    public static QuestionText instance;
+    
     public Answers answers;
 
 

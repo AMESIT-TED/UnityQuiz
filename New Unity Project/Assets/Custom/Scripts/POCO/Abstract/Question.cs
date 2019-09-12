@@ -4,9 +4,9 @@ using UnityEngine;
 
 [Serializable]
 public class Question : ScriptableObject {
+    public static Question instance;
     public string question;
     public bool isCorrect { get; set; }
-    public bool isAnswered { get; set; }
 
     public virtual void AskQuestion() {
        // DisablePanels();

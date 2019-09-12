@@ -25,7 +25,8 @@ public class Quiz : MonoBehaviour {
     public Button btnBack;
     public Text txtQuestion;
     public Text txtQuestionCount;
-    
+    public bool isAnswered { get; set; }
+
 
 
     public enum QuestionType {
@@ -43,13 +44,17 @@ public class Quiz : MonoBehaviour {
     private void Awake() {
         instance = this;
 
-        StaticMethods.AssignButtonAction(btnStart, () => { StartQuiz(); });
+        StaticMethods.AssignButtonAction(btnStart, () => { StartQuiz();});
         answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
-        
     }
 
-    void StartQuiz() {StartCoroutine(AnswerFlow());}
-    
+
+
+
+
+
+
+    void StartQuiz() { StartCoroutine(AnswerFlow()); }
 
     public IEnumerator AnswerFlow()
     {
@@ -59,20 +64,28 @@ public class Quiz : MonoBehaviour {
         float t = 0;
         float duration = 5;
 
-        while (t < duration){
-            for(int i = 0; i  < questions.Length; i++) {
-                questionPanels.text.gameObject.SetActive(true);
-                questions[i].AskQuestion();
+        while (t < duration)
+        {
+            for (int i = 0; i < questions.Length; i++)
+            {
+                if (!isAnswered)
+                {
+                    questionPanels.text.gameObject.SetActive(true);
+                    questions[i].AskQuestion();
+                    yield return new WaitForSeconds(3);
+                }
+                yield return null;
+            isAnswered = false;
             }
             t += Time.deltaTime;
         }
-        
+
 
 
         yield return null;
     }
 
-    
+
 
 
 

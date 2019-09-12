@@ -1,15 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
-
-
-
 
 public class Quiz : MonoBehaviour {
+    [Serializable]
+    public class QuestionPanelSet {
+        public RectTransform text;
+        public RectTransform image;
+        public RectTransform video;
+    }
+
     public static Quiz instance;
 
+
+    public QuestionPanelSet questionPanels;
     public Question[] questions;
     public RectTransform pnlIntroduction;
     public RectTransform pnlQuestion;
@@ -20,6 +25,8 @@ public class Quiz : MonoBehaviour {
     public Button btnBack;
     public Text txtQuestion;
     public Text txtQuestionCount;
+    
+
 
     public enum QuestionType {
         Text,
@@ -29,76 +36,48 @@ public class Quiz : MonoBehaviour {
 
     public QuestionType type = QuestionType.Text;
 
-    public int progress { get; set; }
-
-    private int answerCount = 0;
+    public int progress    { get; set; }
+    public int answerCount { get; set; }
+    
 
     private void Awake() {
         instance = this;
 
-        StaticMethods.AssignButtonAction(btnStart, () => { AskQuestion(); });
-        StaticMethods.AssignButtonAction(btnBack, () => { AskQuestion(true); });
+        StaticMethods.AssignButtonAction(btnStart, () => { StartQuiz(); });
         answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
+        
     }
 
-    private void ShowIntroduction() {
-        pnlIntroduction.gameObject.SetActive(true);
-        pnlQuestion.gameObject.SetActive(false);
-    }
+    void StartQuiz() {StartCoroutine(AnswerFlow());}
+    
 
-    private void ShowQuestion() {
-        pnlIntroduction.gameObject.SetActive(false);
-        pnlQuestion.gameObject.SetActive(true);
-    }
+    public IEnumerator AnswerFlow()
+    {
+        //Run through the array of questions
+        //If one question is answerd, move on 
+        //Wait until each question is answerd. 
+        float t = 0;
+        float duration = 5;
 
-    public void CorrectAnswer() {
-        answerCount++;
-        // We've already incremented, set data for the question we just answered.
-        questions[progress - 1].isCorrect = true;
-        AskQuestion();
-    }
-
-    public void IncorrectAnswer() {
-        AskQuestion();
-    }
-
-    private void AskQuestion(bool _isGoBack = false) {
-        ShowQuestion();
-
-        progress += _isGoBack ? -2 : 0;
-
-        // Debug.Log(txtQuestionCount.text = "You are on: " + (1+progress)+ " out of: " + questions.Length);
-        if (progress == questions.Length) {
-            EndQuiz();
-        } else {
-            txtQuestion.text = questions[progress].question;
-            
-            // Shuffle answers.
-            List<int> ints = new List<int> { 0, 1, 2 };
-            StaticMethods.ShuffleList(ints);
-            questions[progress].AssignAnswer(0, ints[0]);
-            questions[progress].AssignAnswer(1, ints[1]);
-            questions[progress].AssignAnswer(2, ints[2]);
-
-            // TODO: Call this from Question.
-            // DebugAnswers(ints);
-            
-            progress++;
-        }
-    }
-
-    // TODO: Move this to Question.
-    private void DebugAnswers(List<int> ints) {
-        for (int i = 0; i < answerButtons.Length; i++) {
-            Image image = answerButtons[i].GetComponent<Image>();
-            image.color = Color.grey;
-            if (ints[i] == 0) {
-                image.color = Color.green;
+        while (t < duration){
+            for(int i = 0; i  < questions.Length; i++) {
+                questionPanels.text.gameObject.SetActive(true);
+                questions[i].AskQuestion();
             }
+            t += Time.deltaTime;
         }
+        
+
+
+        yield return null;
     }
 
-    private void EndQuiz() {
+    
+
+
+
+
+    public void EndQuiz() {
         //Check pls"
         gameObject.SetActive(false);
         finishScreen.gameObject.SetActive(true);
@@ -106,6 +85,7 @@ public class Quiz : MonoBehaviour {
 
         if (answerCount == questions.Length) {
             _finishText.text = "win";
+            Debug.Log("Win");
         } else {
             _finishText.text = "Lose";
         }

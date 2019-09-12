@@ -13,6 +13,8 @@ MonoBehaviour:
   m_Name: 1+1
   m_EditorClassIdentifier: 
   question: 1+1
+  _selfPanel: {fileID: 6646038117040712156, guid: 0278af04dee1fa34590d73aa0369e3ad,
+    type: 3}
   answers:
     correctAnswer: 2
     decoyAnswerA: 

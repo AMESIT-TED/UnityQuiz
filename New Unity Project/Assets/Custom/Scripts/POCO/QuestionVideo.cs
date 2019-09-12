@@ -28,11 +28,16 @@ public class QuestionVideo : Question {
     public override void AssignAnswer(int buttonIndex, int _i) {
         Quiz quiz = Quiz.instance;
         
-        StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)quiz.CorrectAnswer : quiz.IncorrectAnswer);
+        StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
         
         // Set the correct graphic for this answer.
         VideoClip[] arrAnswers = answers.GetAnswersArray();
         // Target the current button and assigns the text that matches it's answer.
         quiz.answerButtons[buttonIndex].transform.GetChild(0).GetComponent<VideoPlayer>().clip = arrAnswers[_i];
+    }
+
+    protected override void EnablePanel() {
+       
+         PanelTextQuiz.instance.gameObject.SetActive(true);
     }
 }

@@ -17,7 +17,12 @@ public class QuestionImage : Question {
     }
 
     public Answers answers;
+    public static QuestionImage instance;
 
+    void awake()
+    {
+        instance = this;
+    }
     public override void AskQuestion() {
         base.AskQuestion();
 
@@ -25,10 +30,12 @@ public class QuestionImage : Question {
         Debug.Log("Video: " + answers.correctAnswer.name);
     }
 
+
+
     public override void AssignAnswer(int buttonIndex, int _i) {
         Quiz quiz = Quiz.instance;
         
-        StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)quiz.CorrectAnswer : quiz.IncorrectAnswer);
+        StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
         
         // Set the correct graphic for this answer.
         Sprite[] arrAnswers = answers.GetAnswersArray();

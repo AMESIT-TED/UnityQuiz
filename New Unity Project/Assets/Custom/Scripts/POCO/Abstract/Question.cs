@@ -38,9 +38,7 @@ public class Question : ScriptableObject {
     }
 
     protected virtual void DisablePanels() {
-        PanelTextQuiz.instance.gameObject.SetActive(false);
-        //PanelTextQuiz.instance.gameObject.SetActive(false);
-        //PanelTextQuiz.instance.gameObject.SetActive(false);
+      
     }
 
 

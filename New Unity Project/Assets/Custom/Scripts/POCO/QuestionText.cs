@@ -24,7 +24,6 @@ public class QuestionText : Question {
 
 
     public override void AskQuestion() {
-        Debug.Log("AskQuestion");
         base.AskQuestion();
         // TODO: Turn the required panel on.
         EnablePanel();
@@ -44,11 +43,9 @@ public class QuestionText : Question {
 
     protected override void EnablePanel()
     {
-        Debug.Log(PanelTextQuiz.instance);
-        PanelTextQuiz.instance.gameObject.SetActive(true);
+      Quiz.instance.questionPanels.text.gameObject.SetActive(true);        
     }
 
     protected override void DisablePanels(){
-        PanelTextQuiz.instance.gameObject.SetActive(false);
     }
 }

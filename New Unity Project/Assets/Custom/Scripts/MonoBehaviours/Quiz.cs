@@ -15,7 +15,9 @@ public class Quiz : MonoBehaviour {
 
 
     public QuestionPanelSet questionPanels;
+
     public Question[] questions;
+
     public RectTransform pnlIntroduction;
     public RectTransform pnlQuestion;
     public RectTransform pnlAnswerButtons;
@@ -35,8 +37,6 @@ public class Quiz : MonoBehaviour {
         Video
     }
 
-    public QuestionType type = QuestionType.Text;
-
     public int progress    { get; set; }
     public int answerCount { get; set; }
     
@@ -46,6 +46,13 @@ public class Quiz : MonoBehaviour {
 
         StaticMethods.AssignButtonAction(btnStart, () => { StartQuiz();});
         answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
+
+    
+
+        questionPanels.text.gameObject.SetActive(false);
+        questionPanels.image.gameObject.SetActive(false);
+        questionPanels.video.gameObject.SetActive(false);
+
     }
 
 
@@ -54,9 +61,12 @@ public class Quiz : MonoBehaviour {
 
 
 
-    void StartQuiz() { StartCoroutine(AnswerFlow()); }
+    void StartQuiz() { StartCoroutine(AnswerFlow(questionPanels.image)); }
 
-    public IEnumerator AnswerFlow()
+
+
+//I want this function to take in a panel set with a type...then the swapping should be possible
+    public IEnumerator AnswerFlow( RectTransform _typeofPanel)
     {
         //Run through the array of questions
         //If one question is answerd, move on 
@@ -70,25 +80,21 @@ public class Quiz : MonoBehaviour {
             {
                 if (!isAnswered)
                 {
-                    questionPanels.text.gameObject.SetActive(true);
+                    Debug.Log(questionPanels.image);
+                    _typeofPanel.gameObject.SetActive(true);
                     questions[i].AskQuestion();
-                    yield return new WaitForSeconds(3);
+                  //  yield return new WaitForSeconds(3);
                 }
                 yield return null;
-            isAnswered = false;
+            isAnswered = true;
             }
             t += Time.deltaTime;
         }
-
+//I did not expect this to work but it does... wtf
 
 
         yield return null;
     }
-
-
-
-
-
 
     public void EndQuiz() {
         //Check pls"

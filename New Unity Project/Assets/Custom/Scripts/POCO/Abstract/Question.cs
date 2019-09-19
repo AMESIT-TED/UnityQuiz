@@ -9,56 +9,50 @@ public class Question : ScriptableObject {
     public bool isCorrect { get; set; }
 
     public virtual void AskQuestion() {
-       // DisablePanels();
-         EnablePanel();
+        DisablePanels();
+        EnablePanel();
 
         Quiz quiz = Quiz.instance;
-
-        // Debug.Log(txtQuestionCount.text = "You are on: " + (1+progress)+ " out of: " + questions.Length);
-        if (quiz.progress == quiz.questions.Length) {
-            quiz.EndQuiz();
-        } else {
-            quiz.txtQuestion.text = quiz.questions[quiz.progress].question;
+        Debug.Log("progress: " + quiz.progress + " | Qs: " + quiz.questions.Length);
+        
+        quiz.txtQuestion.text = quiz.questions[quiz.progress].question;
             
-            // Shuffle answers.
-            List<int> ints = new List<int> { 0, 1, 2 };
-            StaticMethods.ShuffleList(ints);
-            AssignAnswer(0, ints[0]);
-            AssignAnswer(1, ints[1]);
-            AssignAnswer(2, ints[2]);
+        // Shuffle answers.
+        List<int> ints = new List<int> { 0, 1, 2 };
+        StaticMethods.ShuffleList(ints);
+        AssignAnswer(0, ints[0]);
+        AssignAnswer(1, ints[1]);
+        AssignAnswer(2, ints[2]);
 
-            // DebugAnswers(ints);
+        // DebugAnswers(ints);
             
-            quiz.progress++;
-        }
+        quiz.progress++;
     }
 
     protected virtual void EnablePanel() {
-
     }
 
     protected virtual void DisablePanels() {
-        PanelTextQuiz.instance.gameObject.SetActive(false);
-        //PanelTextQuiz.instance.gameObject.SetActive(false);
-        //PanelTextQuiz.instance.gameObject.SetActive(false);
+        Quiz.instance.questionPanels.text.gameObject.SetActive(false);
+        Quiz.instance.questionPanels.image.gameObject.SetActive(false);
+        Quiz.instance.questionPanels.video.gameObject.SetActive(false);
     }
 
 
-    public virtual void AssignAnswer(int buttonIndex, int _i) { }
+    public virtual void AssignAnswer(int buttonIndex, int _i) {
+    }
 
     // TODO: Could be moved to Question.cs;
-    public  void CorrectAnswer()
-    {
+    public  void CorrectAnswer() {
+        Quiz.instance.isAnswered = true;
         Quiz.instance.answerCount++;
         // We've already incremented, set data for the question we just answered.
         isCorrect = true;
-        AskQuestion();
     }
 
     // TODO: Could be moved to Question.cs;
-    public void IncorrectAnswer()
-    {
-        AskQuestion();
+    public void IncorrectAnswer() {
+        Quiz.instance.isAnswered = true;
     }
 
     // TODO: Move this to Question.

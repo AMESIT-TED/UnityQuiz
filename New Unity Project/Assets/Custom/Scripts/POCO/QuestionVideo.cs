@@ -26,6 +26,8 @@ public class QuestionVideo : Question {
     }
 
     public override void AssignAnswer(int buttonIndex, int _i) {
+        base.AssignAnswer(buttonIndex, _i);
+
         Quiz quiz = Quiz.instance;
         
         StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
@@ -37,7 +39,6 @@ public class QuestionVideo : Question {
     }
 
     protected override void EnablePanel() {
-       
-         PanelTextQuiz.instance.gameObject.SetActive(true);
+        Quiz.instance.questionPanels.video.gameObject.SetActive(true);
     }
 }

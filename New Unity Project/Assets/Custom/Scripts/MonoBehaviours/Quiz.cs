@@ -13,7 +13,6 @@ public class Quiz : MonoBehaviour {
 
     public static Quiz instance;
 
-
     public QuestionPanelSet questionPanels;
     public Question[] questions;
     public RectTransform pnlIntroduction;
@@ -27,68 +26,46 @@ public class Quiz : MonoBehaviour {
     public Text txtQuestionCount;
     public bool isAnswered { get; set; }
 
-
-
     public enum QuestionType {
         Text,
         Image,
         Video
     }
 
-    public QuestionType type = QuestionType.Text;
+    public QuestionType type;
 
     public int progress    { get; set; }
     public int answerCount { get; set; }
-    
 
     private void Awake() {
         instance = this;
 
-        StaticMethods.AssignButtonAction(btnStart, () => { StartQuiz();});
+        StaticMethods.AssignButtonAction(btnStart, StartQuiz);
         answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
     }
 
-
-
-
-
-
-
-    void StartQuiz() { StartCoroutine(AnswerFlow()); }
-
-    public IEnumerator AnswerFlow()
-    {
-        //Run through the array of questions
-        //If one question is answerd, move on 
-        //Wait until each question is answerd. 
-        float t = 0;
-        float duration = 5;
-
-        while (t < duration)
-        {
-            for (int i = 0; i < questions.Length; i++)
-            {
-                if (!isAnswered)
-                {
-                    questionPanels.text.gameObject.SetActive(true);
-                    questions[i].AskQuestion();
-                    yield return new WaitForSeconds(3);
-                }
-                yield return null;
-            isAnswered = false;
-            }
-            t += Time.deltaTime;
-        }
-
-
-
-        yield return null;
+    void StartQuiz() {
+        StartCoroutine(AnswerFlow());
     }
 
+    private bool isAwaitingResponse;
 
+    public IEnumerator AnswerFlow() {
+        //Run through the array of questions
+        //If one question is answerd, move on 
 
+        for (int i = 0; i < questions.Length; i++) {
+            questions[i].AskQuestion();
 
+            while (!isAnswered) {
+                yield return null;
+            }
 
+            isAnswered = false;
+        }
+
+        EndQuiz();
+    }
 
     public void EndQuiz() {
         //Check pls"
@@ -96,11 +73,13 @@ public class Quiz : MonoBehaviour {
         finishScreen.gameObject.SetActive(true);
         Text _finishText = finishScreen.GetComponentInChildren<Text>();
 
+        Debug.Log("Fin");
         if (answerCount == questions.Length) {
             _finishText.text = "win";
             Debug.Log("Win");
         } else {
             _finishText.text = "Lose";
+            Debug.Log("Lose");
         }
     }
 }

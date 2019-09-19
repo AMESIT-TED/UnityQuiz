@@ -16,24 +16,17 @@ public class QuestionText : Question {
             return new string[] { correctAnswer, decoyAnswerA, decoyAnswerB };
         }
     }
-
     
     public Answers answers;
 
-
-
-
     public override void AskQuestion() {
-        Debug.Log("AskQuestion");
         base.AskQuestion();
-        // TODO: Turn the required panel on.
-        EnablePanel();
     }
 
-
     public override void AssignAnswer(int buttonIndex, int _i) {
-        Quiz quiz = Quiz.instance;
+        base.AssignAnswer(buttonIndex, _i);
 
+        Quiz quiz = Quiz.instance;
 
         // Set the correct graphic for this answer.
         string[] arrAnswers = answers.GetAnswersArray();
@@ -42,13 +35,7 @@ public class QuestionText : Question {
         StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
     }
 
-    protected override void EnablePanel()
-    {
-        Debug.Log(PanelTextQuiz.instance);
-        PanelTextQuiz.instance.gameObject.SetActive(true);
-    }
-
-    protected override void DisablePanels(){
-        PanelTextQuiz.instance.gameObject.SetActive(false);
+    protected override void EnablePanel() {
+        Quiz.instance.questionPanels.text.gameObject.SetActive(true);
     }
 }

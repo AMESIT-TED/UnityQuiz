@@ -33,6 +33,7 @@ public class QuestionImage : Question {
 
 
     public override void AssignAnswer(int buttonIndex, int _i) {
+        base.AssignAnswer(buttonIndex, _i);
         Quiz quiz = Quiz.instance;
         
         StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
@@ -41,5 +42,9 @@ public class QuestionImage : Question {
         Sprite[] arrAnswers = answers.GetAnswersArray();
         // Target the current button and assigns the text that matches it's answer.
         quiz.answerButtons[buttonIndex].GetComponent<Image>().sprite = arrAnswers[_i];
+    }
+
+    protected override void EnablePanel() {
+        Quiz.instance.questionPanels.image.gameObject.SetActive(true);
     }
 }

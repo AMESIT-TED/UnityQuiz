@@ -1517,11 +1517,7 @@ MonoBehaviour:
   pnlAnswerButtons: {fileID: 1961207855}
   finishScreen: {fileID: 245903375}
   btnStart: {fileID: 286360013}
-  answerButtons:
-  - {fileID: 1525865664}
-  - {fileID: 1221303610}
-  - {fileID: 1825196795}
-  btnBack: {fileID: 0}
+  answerButtons: []
   txtQuestion: {fileID: 1701199665}
   txtQuestionCount: {fileID: 1595400833}
   type: 0
@@ -3273,7 +3269,7 @@ GameObject:
   - component: {fileID: 1842376943}
   - component: {fileID: 1842376944}
   m_Layer: 5
-  m_Name: PanelTextQuestion
+  m_Name: PanelText
   m_TagString: QuizText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

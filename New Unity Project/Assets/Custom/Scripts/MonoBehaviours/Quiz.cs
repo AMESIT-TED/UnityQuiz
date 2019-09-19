@@ -1,25 +1,33 @@
 ﻿using System;
-using System.Collections.Generic;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
-using UnityEngine.Video;
-
-
-
 
 public class Quiz : MonoBehaviour {
+    [Serializable]
+    public class QuestionPanelSet {
+        public RectTransform text;
+        public RectTransform image;
+        public RectTransform video;
+    }
+
     public static Quiz instance;
 
+    public QuestionPanelSet questionPanels;
+
     public Question[] questions;
+
     public RectTransform pnlIntroduction;
     public RectTransform pnlQuestion;
     public RectTransform pnlAnswerButtons;
     public FinishScreen finishScreen;
     public Button btnStart;
+    // TODO: Move this to a separate class that you can place on your question panels. Each panel is aware of it's own buttons. Yeah, you will have to deal with how answer shuffling works at that point :/
     public Button[] answerButtons;
-    public Button btnBack;
     public Text txtQuestion;
     public Text txtQuestionCount;
+
+    public bool isAnswered { get; set; }
 
     public enum QuestionType {
         Text,
@@ -27,87 +35,66 @@ public class Quiz : MonoBehaviour {
         Video
     }
 
-    public QuestionType type = QuestionType.Text;
+    public QuestionType type;
 
-    public int progress { get; set; }
+    public int progress    { get; set; }
+    public int answerCount { get; set; }
 
-    private int answerCount = 0;
-
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
 
-        StaticMethods.AssignButtonAction(btnStart, () => { AskQuestion(); });
-        StaticMethods.AssignButtonAction(btnBack, () => { AskQuestion(true); });
+        StaticMethods.AssignButtonAction(btnStart, StartQuiz);
+
+        // TODO: Move this to the new class mentioned in the previous TODO.
         answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
+
+        DisablePanels();
     }
 
-    private void ShowIntroduction() {
-        pnlIntroduction.gameObject.SetActive(true);
-        pnlQuestion.gameObject.SetActive(false);
+    public void DisablePanels() {
+        questionPanels.text.gameObject.SetActive(false);
+        questionPanels.image.gameObject.SetActive(false);
+        questionPanels.video.gameObject.SetActive(false);
     }
 
-    private void ShowQuestion() {
-        pnlIntroduction.gameObject.SetActive(false);
-        pnlQuestion.gameObject.SetActive(true);
+    void StartQuiz() {
+        StartCoroutine(AnswerFlow());
     }
 
-    public void CorrectAnswer() {
-        answerCount++;
-        // We've already incremented, set data for the question we just answered.
-        questions[progress - 1].isCorrect = true;
-        AskQuestion();
-    }
+    private bool isAwaitingResponse;
 
-    public void IncorrectAnswer() {
-        AskQuestion();
-    }
+    public IEnumerator AnswerFlow() {
+        //Run through the array of questions
+        //If one question is answerd, move on 
 
-    private void AskQuestion(bool _isGoBack = false) {
-        ShowQuestion();
+        for (int i = 0; i < questions.Length; i++) {
+            questions[i].AskQuestion();
 
-        progress += _isGoBack ? -2 : 0;
-
-        // Debug.Log(txtQuestionCount.text = "You are on: " + (1+progress)+ " out of: " + questions.Length);
-        if (progress == questions.Length) {
-            EndQuiz();
-        } else {
-            txtQuestion.text = questions[progress].question;
-            
-            // Shuffle answers.
-            List<int> ints = new List<int> { 0, 1, 2 };
-            StaticMethods.ShuffleList(ints);
-            questions[progress].AssignAnswer(0, ints[0]);
-            questions[progress].AssignAnswer(1, ints[1]);
-            questions[progress].AssignAnswer(2, ints[2]);
-
-            // TODO: Call this from Question.
-            // DebugAnswers(ints);
-            
-            progress++;
-        }
-    }
-
-    // TODO: Move this to Question.
-    private void DebugAnswers(List<int> ints) {
-        for (int i = 0; i < answerButtons.Length; i++) {
-            Image image = answerButtons[i].GetComponent<Image>();
-            image.color = Color.grey;
-            if (ints[i] == 0) {
-                image.color = Color.green;
+            while (!isAnswered) {
+                yield return null;
             }
+
+            isAnswered = false;
         }
+//I did not expect this to work but it does... wtf
+
+        EndQuiz();
     }
 
-    private void EndQuiz() {
+    public void EndQuiz() {
         //Check pls"
         gameObject.SetActive(false);
         finishScreen.gameObject.SetActive(true);
         Text _finishText = finishScreen.GetComponentInChildren<Text>();
 
+        Debug.Log("Fin");
         if (answerCount == questions.Length) {
             _finishText.text = "win";
+            Debug.Log("Win");
         } else {
             _finishText.text = "Lose";
+            Debug.Log("Lose");
         }
     }
 }

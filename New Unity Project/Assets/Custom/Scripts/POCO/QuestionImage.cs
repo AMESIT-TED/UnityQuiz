@@ -5,34 +5,45 @@ using UnityEngine.UI;
 
 [Serializable, CreateAssetMenu(fileName = "New Image Question", menuName = "Question/Image")]
 public class QuestionImage : Question {
-    [Serializable]
+     [Serializable]
     public class Answers {
-        public Sprite correctAnswer;
-        public Sprite decoyAnswerA;
-        public Sprite decoyAnswerB;
+        public string correctAnswer;
+        public string decoyAnswerA;
+        public string decoyAnswerB;
 
-        public Sprite[] GetAnswersArray() {
-            return new Sprite[]{correctAnswer, decoyAnswerA, decoyAnswerB };
+        public string[] GetAnswersArray() {
+            return new string[] { correctAnswer, decoyAnswerA, decoyAnswerB };
         }
     }
 
     public Answers answers;
 
     public override void AskQuestion() {
+        Debug.Log("AskQuestion");
         base.AskQuestion();
-
         // TODO: Turn the required panel on.
-        Debug.Log("Video: " + answers.correctAnswer.name);
+        EnablePanel();
     }
 
     public override void AssignAnswer(int buttonIndex, int _i) {
+        base.AssignAnswer(buttonIndex, _i);
         Quiz quiz = Quiz.instance;
-        
-        StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)quiz.CorrectAnswer : quiz.IncorrectAnswer);
-        
+
+
         // Set the correct graphic for this answer.
-        Sprite[] arrAnswers = answers.GetAnswersArray();
+        string[] arrAnswers = answers.GetAnswersArray();
         // Target the current button and assigns the text that matches it's answer.
-        quiz.answerButtons[buttonIndex].GetComponent<Image>().sprite = arrAnswers[_i];
+        quiz.answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = arrAnswers[_i];
+        StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
+    }
+
+    protected override void EnablePanel() {
+        Quiz.instance.questionPanels.image.gameObject.SetActive(true);        
+    }
+
+    protected override void DisablePanels() {
+        Quiz.instance.questionPanels.text.gameObject.SetActive(false);
+        Quiz.instance.questionPanels.image.gameObject.SetActive(false);
+        Quiz.instance.questionPanels.video.gameObject.SetActive(false);
     }
 }

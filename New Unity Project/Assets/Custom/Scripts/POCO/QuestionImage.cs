@@ -16,11 +16,7 @@ public class QuestionImage : Question {
         }
     }
 
-    
     public Answers answers;
-
-
-
 
     public override void AskQuestion() {
         Debug.Log("AskQuestion");
@@ -28,7 +24,6 @@ public class QuestionImage : Question {
         // TODO: Turn the required panel on.
         EnablePanel();
     }
-
 
     public override void AssignAnswer(int buttonIndex, int _i) {
         base.AssignAnswer(buttonIndex, _i);
@@ -42,16 +37,13 @@ public class QuestionImage : Question {
         StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
     }
 
-    protected override void EnablePanel()
-    {
-      Quiz.instance.questionPanels.image.gameObject.SetActive(true);        
-     
-    }
-
-    protected override void DisablePanels(){
-    }
-
     protected override void EnablePanel() {
-        Quiz.instance.questionPanels.image.gameObject.SetActive(true);
+        Quiz.instance.questionPanels.image.gameObject.SetActive(true);        
+    }
+
+    protected override void DisablePanels() {
+        Quiz.instance.questionPanels.text.gameObject.SetActive(false);
+        Quiz.instance.questionPanels.image.gameObject.SetActive(false);
+        Quiz.instance.questionPanels.video.gameObject.SetActive(false);
     }
 }

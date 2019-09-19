@@ -22,10 +22,11 @@ public class Quiz : MonoBehaviour {
     public RectTransform pnlAnswerButtons;
     public FinishScreen finishScreen;
     public Button btnStart;
+    // TODO: Move this to a separate class that you can place on your question panels. Each panel is aware of it's own buttons. Yeah, you will have to deal with how answer shuffling works at that point :/
     public Button[] answerButtons;
-    public Button btnBack;
     public Text txtQuestion;
     public Text txtQuestionCount;
+
     public bool isAnswered { get; set; }
 
     public enum QuestionType {
@@ -39,18 +40,22 @@ public class Quiz : MonoBehaviour {
     public int progress    { get; set; }
     public int answerCount { get; set; }
 
-    private void Awake() {
+    private void Awake()
+    {
         instance = this;
 
         StaticMethods.AssignButtonAction(btnStart, StartQuiz);
+
+        // TODO: Move this to the new class mentioned in the previous TODO.
         answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
 
-    
+        DisablePanels();
+    }
 
+    public void DisablePanels() {
         questionPanels.text.gameObject.SetActive(false);
         questionPanels.image.gameObject.SetActive(false);
         questionPanels.video.gameObject.SetActive(false);
-
     }
 
     void StartQuiz() {

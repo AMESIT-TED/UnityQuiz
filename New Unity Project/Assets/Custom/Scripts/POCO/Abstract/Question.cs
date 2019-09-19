@@ -13,7 +13,6 @@ public class Question : ScriptableObject {
         EnablePanel();
 
         Quiz quiz = Quiz.instance;
-        Debug.Log("progress: " + quiz.progress + " | Qs: " + quiz.questions.Length);
         
         quiz.txtQuestion.text = quiz.questions[quiz.progress].question;
             
@@ -33,9 +32,7 @@ public class Question : ScriptableObject {
     }
 
     protected virtual void DisablePanels() {
-        Quiz.instance.questionPanels.text.gameObject.SetActive(false);
-        Quiz.instance.questionPanels.image.gameObject.SetActive(false);
-        Quiz.instance.questionPanels.video.gameObject.SetActive(false);
+        Quiz.instance.DisablePanels();
     }
 
 

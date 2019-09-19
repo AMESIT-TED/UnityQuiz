@@ -14,7 +14,9 @@ public class Quiz : MonoBehaviour {
     public static Quiz instance;
 
     public QuestionPanelSet questionPanels;
+
     public Question[] questions;
+
     public RectTransform pnlIntroduction;
     public RectTransform pnlQuestion;
     public RectTransform pnlAnswerButtons;
@@ -42,6 +44,13 @@ public class Quiz : MonoBehaviour {
 
         StaticMethods.AssignButtonAction(btnStart, StartQuiz);
         answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
+
+    
+
+        questionPanels.text.gameObject.SetActive(false);
+        questionPanels.image.gameObject.SetActive(false);
+        questionPanels.video.gameObject.SetActive(false);
+
     }
 
     void StartQuiz() {
@@ -63,6 +72,7 @@ public class Quiz : MonoBehaviour {
 
             isAnswered = false;
         }
+//I did not expect this to work but it does... wtf
 
         EndQuiz();
     }

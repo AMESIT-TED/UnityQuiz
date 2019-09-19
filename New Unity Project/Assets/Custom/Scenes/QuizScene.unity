@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657844, g: 0.49641222, b: 0.57481694, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -1523,7 +1523,7 @@ MonoBehaviour:
     video: {fileID: 49657829}
   questions:
   - {fileID: 11400000, guid: 38b5de4aa1c698d469aa8706ffba2965, type: 2}
-  - {fileID: 11400000, guid: e24ba2005f944a149a04dd83597320c8, type: 2}
+  - {fileID: 11400000, guid: bae33bc69af51e54ba717baf9496ba39, type: 2}
   - {fileID: 11400000, guid: 5c3cbb4a0250a2c48ba567a3b5cecaa4, type: 2}
   pnlIntroduction: {fileID: 0}
   pnlQuestion: {fileID: 1842376942}
@@ -2306,7 +2306,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1444610366
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -3298,14 +3298,13 @@ GameObject:
   - component: {fileID: 1842376945}
   - component: {fileID: 1842376943}
   - component: {fileID: 1842376944}
-  - component: {fileID: 1842376946}
   m_Layer: 5
-  m_Name: PanelText
+  m_Name: PanelTextQuestion
   m_TagString: QuizText
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1842376942
 RectTransform:
   m_ObjectHideFlags: 0

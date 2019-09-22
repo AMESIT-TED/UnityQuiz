@@ -39,7 +39,7 @@ public class Question : ScriptableObject {
     public virtual void AssignAnswer(int buttonIndex, int _i) {
     }
 
-    // TODO: Could be moved to Question.cs;
+ 
     public  void CorrectAnswer() {
         Quiz.instance.isAnswered = true;
         Quiz.instance.answerCount++;
@@ -47,7 +47,7 @@ public class Question : ScriptableObject {
         isCorrect = true;
     }
 
-    // TODO: Could be moved to Question.cs;
+
     public void IncorrectAnswer() {
         Quiz.instance.isAnswered = true;
     }

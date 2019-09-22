@@ -12,7 +12,7 @@ void Start()
 {   
     
     instance = this;
-    textButtons = Quiz.instance.questionPanels.text.GetComponentsInChildren<Button>(true);
+   // textButtons = Quiz.instance.questionPanels.text.GetComponentsInChildren<Button>(true);
 }
 
 }

@@ -33,9 +33,9 @@ public class QuestionImage : Question {
         // Set the correct graphic for this answer.
         string[] arrAnswers = answers.GetAnswersArray();
         // Target the current button and assigns the text that matches it's answer.
-       panelImage.imageButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = arrAnswers[_i];
+     Quiz.instance.questionPanels.image.GetComponent<PanelImage>().imageButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text= arrAnswers[_i];
 
-          StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.image.GetComponent<PanelText>().textButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
+          StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.image.GetComponent<PanelImage>().imageButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
     }
 
     protected override void EnablePanel() {

@@ -27,14 +27,15 @@ public class QuestionImage : Question {
 
     public override void AssignAnswer(int buttonIndex, int _i) {
         base.AssignAnswer(buttonIndex, _i);
-        Quiz quiz = Quiz.instance;
+        PanelImage panelImage =PanelImage.instance;
 
 
         // Set the correct graphic for this answer.
         string[] arrAnswers = answers.GetAnswersArray();
         // Target the current button and assigns the text that matches it's answer.
-        quiz.answerButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = arrAnswers[_i];
-        StaticMethods.AssignButtonAction(quiz.answerButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
+       panelImage.imageButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text = arrAnswers[_i];
+
+          StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.image.GetComponent<PanelText>().textButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
     }
 
     protected override void EnablePanel() {

@@ -52,7 +52,6 @@ public class Question : ScriptableObject {
         Quiz.instance.isAnswered = true;
     }
 
-    // TODO: Move this to Question.
     //private void DebugAnswers(List<int> ints) {
     //    for (int i = 0; i < answerButtons.Length; i++) {
     //        Image image = answerButtons[i].GetComponent<Image>();

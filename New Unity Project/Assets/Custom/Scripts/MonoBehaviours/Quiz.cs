@@ -19,11 +19,9 @@ public class Quiz : MonoBehaviour {
 
     public RectTransform pnlIntroduction;
     public RectTransform pnlQuestion;
-    public RectTransform pnlAnswerButtons;
     public FinishScreen finishScreen;
     public Button btnStart;
-    // TODO: Move this to a separate class that you can place on your question panels. Each panel is aware of it's own buttons. Yeah, you will have to deal with how answer shuffling works at that point :/
-    public Button[] answerButtons;
+
     public Text txtQuestion;
     public Text txtQuestionCount;
 
@@ -45,9 +43,8 @@ public class Quiz : MonoBehaviour {
         instance = this;
 
         StaticMethods.AssignButtonAction(btnStart, StartQuiz);
-
-        // TODO: Move this to the new class mentioned in the previous TODO.
-        answerButtons = pnlAnswerButtons.GetComponentsInChildren<Button>(true);
+      
+      
 
         DisablePanels();
     }

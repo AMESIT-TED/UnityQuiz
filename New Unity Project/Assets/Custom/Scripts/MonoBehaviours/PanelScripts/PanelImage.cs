@@ -11,6 +11,6 @@ public class PanelImage : MonoBehaviour
 {
     instance = this;
     imageButtons = Quiz.instance.questionPanels.image.GetComponentsInChildren<Button>(true);
-
+    
 }
 }

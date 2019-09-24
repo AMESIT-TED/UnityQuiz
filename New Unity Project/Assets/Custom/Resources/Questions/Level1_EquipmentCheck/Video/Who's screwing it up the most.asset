@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8ec29b589f338a243a06c6a473569904, type: 3}
   m_Name: Who's screwing it up the most
   m_EditorClassIdentifier: 
-  question: 
+  question: Who is having a good day?
   answers:
     correctAnswer: {fileID: 32900000, guid: 51aaabb56cb5fca489dbc932956b119d, type: 3}
     decoyAnswerA: {fileID: 32900000, guid: 51aaabb56cb5fca489dbc932956b119d, type: 3}

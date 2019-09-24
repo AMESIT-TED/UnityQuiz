@@ -1,43 +1,53 @@
-﻿using System;
-using UnityEngine;
-using UnityEngine.Events;
-using UnityEngine.Video;
+﻿//using system;
+//using unityengine;
+//using unityengine.events;
+//using unityengine.ui;
+//using unityengine.video;
 
-[Serializable, CreateAssetMenu(fileName = "New Video Question", menuName = "Question/Video")]
-public class QuestionVideo : Question {
-    [Serializable]
-    public class Answers {
-        public VideoClip correctAnswer;
-        public VideoClip decoyAnswerA;
-        public VideoClip decoyAnswerB;
+//[serializable, createassetmenu(filename = "new video question", menuname = "question/video")]
+//public class questionvideo : question
+//{
+//    [serializable]
+//    public class answers
+//    {
+//        public videoclip correctanswer;
+//        public videoclip decoyanswera;
+//        public videoclip decoyanswerb;
 
-        public VideoClip[] GetAnswersArray() {
-            return new VideoClip[]{correctAnswer, decoyAnswerA, decoyAnswerB };
-        }
-    }
+//        public videoclip[] getanswersarray()
+//        {
+//            return new videoclip[] { correctanswer, decoyanswera, decoyanswerb };
+//        }
+//    }
 
-    public Answers answers;
+//    public answers answers;
 
-    public override void AskQuestion() {
-        base.AskQuestion();
-      EnablePanel();
-        // TODO: Turn the required panel on.
-    }
+//    public override void askquestion()
+//    {
+//        base.askquestion();
+//        enablepanel();
+//        // todo: turn the required panel on.
+//    }
 
-    public override void AssignAnswer(int buttonIndex, int _i) {
-        base.AssignAnswer(buttonIndex, _i);
+//    public override void assignanswer(int buttonindex, int _i)
+//    {
+//        base.assignanswer(buttonindex, _i);
 
-        PanelVideo panelVideo = PanelVideo.instance;
-        
-        StaticMethods.AssignButtonAction(panelVideo.videoButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
-        // Set the correct graphic for this answer.
-        VideoClip[] arrAnswers = answers.GetAnswersArray();
-        panelVideo.videoButtons[buttonIndex].transform.GetChild(0).GetComponentInChildren<VideoPlayer>().clip = arrAnswers[_i];
-        // Target the current button and assigns the text that matches it's answer.
-      //  quiz.answerButtons[buttonIndex].transform.GetChild(0).GetComponent<VideoPlayer>().clip = arrAnswers[_i];
-    }
+//        panelvideo panelvideo = panelvideo.instance;
+//        videoclip[] arranswers = answers.getanswersarray();
 
-    protected override void EnablePanel() {
-        Quiz.instance.questionPanels.video.gameObject.SetActive(true);
-    }
-}
+//        quiz.instance.questionpanels.video.getcomponent<panelvideo>().videobuttons[buttonindex].transform.getcomponent<videoplayer>().clip = arranswers[_i];
+
+
+//        staticmethods.assignbuttonaction(panelvideo.videobuttons[buttonindex], (_i == 0) ? (unityaction)correctanswer : incorrectanswer);
+//        // set the correct graphic for this answer.
+//        panelvideo.videobuttons[buttonindex].transform.getc   hild(0).getcomponentinchildren<videoplayer>().clip = arranswers[_i];
+//        // target the current button and assigns the text that matches it's answer.
+//        //  quiz.answerbuttons[buttonindex].transform.getchild(0).getcomponent<videoplayer>().clip = arranswers[_i];
+//    }
+
+//    protected override void enablepanel()
+//    {
+//        quiz.instance.questionpanels.video.gameobject.setactive(true);
+//    }
+//}

@@ -11,8 +11,21 @@ public class QuestionImage : Question {
         public string decoyAnswerA;
         public string decoyAnswerB;
 
+        public Sprite correctAnswerImage;
+        public Sprite decoyImageA;
+        public Sprite decoyImageB;
+
+
+
         public string[] GetAnswersArray() {
             return new string[] { correctAnswer, decoyAnswerA, decoyAnswerB };
+            
+
+        }
+
+        public Sprite[] GetAnswerImagesArray()
+        {
+            return new Sprite[] { correctAnswerImage, decoyImageA, decoyImageB };
         }
     }
 
@@ -32,10 +45,13 @@ public class QuestionImage : Question {
 
         // Set the correct graphic for this answer.
         string[] arrAnswers = answers.GetAnswersArray();
+        Sprite[] arrImageAnswers = answers.GetAnswerImagesArray();
         // Target the current button and assigns the text that matches it's answer.
-     Quiz.instance.questionPanels.image.GetComponent<PanelImage>().imageButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text= arrAnswers[_i];
+        Quiz.instance.questionPanels.image.GetComponent<PanelImage>().imageButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text= arrAnswers[_i];
+        Quiz.instance.questionPanels.image.GetComponent<PanelImage>().imageButtons[buttonIndex].transform.GetComponent<Image>().sprite = arrImageAnswers[_i];
 
-          StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.image.GetComponent<PanelImage>().imageButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
+
+        StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.image.GetComponent<PanelImage>().imageButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
     }
 
     protected override void EnablePanel() {

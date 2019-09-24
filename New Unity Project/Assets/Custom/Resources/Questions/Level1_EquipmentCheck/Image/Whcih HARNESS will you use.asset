@@ -17,3 +17,7 @@ MonoBehaviour:
     correctAnswer: sadadasdad
     decoyAnswerA: no
     decoyAnswerB: no
+    correctAnswerImage: {fileID: 21300000, guid: 73a4f5c0975ad984f9c6b692c58e1314,
+      type: 3}
+    decoyImageA: {fileID: 10901, guid: 0000000000000000f000000000000000, type: 0}
+    decoyImageB: {fileID: 10911, guid: 0000000000000000f000000000000000, type: 0}

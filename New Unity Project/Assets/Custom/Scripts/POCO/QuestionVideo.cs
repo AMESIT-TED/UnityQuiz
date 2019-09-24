@@ -20,6 +20,7 @@ public class QuestionVideo : Question
     }
 
     public Answers answers;
+    
 
     public override void AskQuestion()
     {
@@ -39,6 +40,11 @@ public class QuestionVideo : Question
         Debug.Log(Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex]);
         Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex].transform.GetComponent<VideoPlayer>().clip = arrAnswers[_i];
         StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
+        //TODO play the video...
+        Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex].transform.GetComponent<VideoPlayer>().Play();
+
+
+
         // Target the current button and assigns the text that matches it's answer.
         //  quiz.answerButtons[buttonIndex].transform.GetChild(0).GetComponent<VideoPlayer>().clip = arrAnswers[_i];
     }

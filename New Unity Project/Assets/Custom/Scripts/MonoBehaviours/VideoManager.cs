@@ -11,8 +11,15 @@ public class VideoManager : MonoBehaviour
 
     private void Awake() {
         StartCoroutine(ScaleVideoUi());
+
+        
+
     }
 
+    void OnMouseOver()
+    {
+        Debug.Log("ye");
+    }
  
   
   

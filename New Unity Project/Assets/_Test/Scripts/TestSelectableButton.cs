@@ -6,10 +6,11 @@ public class TestSelectableButton : MonoBehaviour {
     void OnMouseEnter() {
         RevealPreview();
 
-        apples = 8;
+
     }
 
     private void RevealPreview() {
+        //This is optional,
         TestVideoPreview test = TestVideoPreview.instance;
 
         SwapVideoContent(test);

@@ -42,7 +42,8 @@ public class TestVideoPreview : MonoBehaviour {
             t += Time.deltaTime;
             yield return null;
         }
-
+    //WHy are we setting it here? dosent the lerp make it here
+    //Eventually?
         transform.position = toPosition;
         transform.localScale = toScale;
     }

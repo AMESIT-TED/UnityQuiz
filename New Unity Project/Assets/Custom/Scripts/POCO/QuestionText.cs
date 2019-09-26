@@ -27,7 +27,6 @@ public class QuestionText : Question {
         base.AssignAnswer(buttonIndex, _i);
 
        PanelText panelText = PanelText.instance;
-        Debug.Log(Quiz.instance.questionPanels.text.GetComponent<PanelText>());
         // Set the correct graphic for this answer.
         string[] arrAnswers = answers.GetAnswersArray();
         // Target the current button and assigns the text that matches it's answer.

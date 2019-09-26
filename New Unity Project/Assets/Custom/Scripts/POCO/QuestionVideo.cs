@@ -37,7 +37,7 @@ public class QuestionVideo : Question
 
         // Set the correct graphic for this answer.
         VideoClip[] arrAnswers = answers.GetAnswersArray();
-        Debug.Log(Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex]);
+        
         Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex].transform.GetComponent<VideoPlayer>().clip = arrAnswers[_i];
         StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
         //TODO play the video...

@@ -1,15 +1,22 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.EventSystems;
+using UnityEngine.UI;
 using UnityEngine.Video;
 
-public class VideoButtonSelect : MonoBehaviour
+
+public class VideoButtonSelect : MonoBehaviour,IPointerEnterHandler
 {
 public static bool isPreviewActive;
-  void OnMouseEnter()
-  {
+
+    public void OnPointerEnter(PointerEventData eventData)
+    {
       RevealPreview();
-  }
+      
+    }
+
+
 
   private void RevealPreview(){
       SwapVideoContent(VideoPreview.instance);
@@ -29,8 +36,10 @@ public static bool isPreviewActive;
   }
 
 private void SwapVideoContent(VideoPreview _videoPreview){
+  //use this method to switch the contents 
     _videoPreview.GetComponent<VideoPlayer>().Play();
-     VideoPreview.instance.GetComponent<Renderer>().material.color = GetComponent<Renderer>().material.color;
+    _videoPreview.GetComponentInChildren<Text>().text = GetComponentInChildren<Text>().text;
+    Debug.Log("Yay");
 }
 
 }

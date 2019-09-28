@@ -6,7 +6,7 @@ public class TestSelectableButton : MonoBehaviour {
     void OnMouseEnter() {
         RevealPreview();
 
-
+        Debug.Log ("Yay");
     }
 
     private void RevealPreview() {

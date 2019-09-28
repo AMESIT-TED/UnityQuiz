@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class VideoPreview : MonoBehaviour
 {
-
     public static VideoPreview instance;
 
     public AnimationCurve bounceCurve;
@@ -64,7 +63,7 @@ public class VideoPreview : MonoBehaviour
         float duration = 0.125f;
 
         while (t < duration) {
-            transform.localScale = Vector3.Lerp(targetPosition, targetScale * 1.1f, bounceCurve.Evaluate(t / duration));
+            transform.localScale = Vector3.Lerp(targetScale, targetScale * 1.1f, bounceCurve.Evaluate(t / duration));
 
             t += Time.deltaTime;
             yield return null;

@@ -1120,6 +1120,7 @@ GameObject:
   - component: {fileID: 475294480}
   - component: {fileID: 475294479}
   - component: {fileID: 475294478}
+  - component: {fileID: 475294481}
   m_Layer: 5
   m_Name: PanelAnswerButtons
   m_TagString: Untagged
@@ -1212,6 +1213,19 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 475294476}
   m_CullTransparentMesh: 0
+--- !u!65 &475294481
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 475294476}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &549444789
 GameObject:
   m_ObjectHideFlags: 0
@@ -2519,27 +2533,27 @@ MonoBehaviour:
     m_Curve:
     - serializedVersion: 3
       time: 0
-      value: 0.016300201
-      inSlope: 1.9584775
-      outSlope: 1.9584775
+      value: 0.016471863
+      inSlope: 1.974098
+      outSlope: 1.974098
       tangentMode: 34
       weightedMode: 0
       inWeight: 0
       outWeight: 0.33333334
     - serializedVersion: 3
-      time: 0.49166662
-      value: 0.9792182
-      inSlope: 0.0321064
-      outSlope: 0.0321064
+      time: 0.49583328
+      value: 0.99529535
+      inSlope: 0.016315043
+      outSlope: 0.016315043
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
       outWeight: 0.33333334
     - serializedVersion: 3
       time: 1
-      value: 0.016300201
-      inSlope: -1.8942647
-      outSlope: -1.8942647
+      value: 0.016471863
+      inSlope: -1.9414679
+      outSlope: -1.9414679
       tangentMode: 34
       weightedMode: 0
       inWeight: 0.33333334
@@ -2643,7 +2657,7 @@ MonoBehaviour:
     m_SelectOnRight: {fileID: 0}
   m_Transition: 1
   m_Colors:
-    m_NormalColor: {r: 1, g: 1, b: 1, a: 1}
+    m_NormalColor: {r: 0.6415094, g: 0.35404056, b: 0.35404056, a: 1}
     m_HighlightedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
     m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
     m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}

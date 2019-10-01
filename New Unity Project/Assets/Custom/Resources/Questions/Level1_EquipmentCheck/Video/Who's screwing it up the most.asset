@@ -13,8 +13,7 @@ MonoBehaviour:
   m_Name: Who's screwing it up the most
   m_EditorClassIdentifier: 
   question: Who is having a good day?
-  <isCorrect>k__BackingField: 0
   answers:
-    correctAnswer: {fileID: 32900000, guid: 51aaabb56cb5fca489dbc932956b119d, type: 3}
-    decoyAnswerA: {fileID: 32900000, guid: 51aaabb56cb5fca489dbc932956b119d, type: 3}
-    decoyAnswerB: {fileID: 32900000, guid: 51aaabb56cb5fca489dbc932956b119d, type: 3}
+    correctAnswer: https://firebasestorage.googleapis.com/v0/b/safety-n-action-refresher.appspot.com/o/HarnessVideos%2FMVI_5154.MOV?alt=media&token=8e7ee226-3039-4f09-9e06-39b5673f259f
+    decoyAnswerA: https://firebasestorage.googleapis.com/v0/b/safety-n-action-refresher.appspot.com/o/HarnessVideos%2FMVI_5154.MOV?alt=media&token=8e7ee226-3039-4f09-9e06-39b5673f259f
+    decoyAnswerB: https://firebasestorage.googleapis.com/v0/b/safety-n-action-refresher.appspot.com/o/HarnessVideos%2FMVI_5154.MOV?alt=media&token=8e7ee226-3039-4f09-9e06-39b5673f259f

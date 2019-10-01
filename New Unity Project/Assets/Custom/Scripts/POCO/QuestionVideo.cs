@@ -9,13 +9,13 @@ public class QuestionVideo : Question
     [Serializable]
     public class Answers
     {
-        public VideoClip correctAnswer;
-        public VideoClip decoyAnswerA;
-        public VideoClip decoyAnswerB;
+        public String correctAnswer;
+        public String decoyAnswerA;
+        public String decoyAnswerB;
 
-        public VideoClip[] GetAnswersArray()
+        public String[] GetAnswersArray()
         {
-            return new VideoClip[] { correctAnswer, decoyAnswerA, decoyAnswerB };
+            return new String[] { correctAnswer, decoyAnswerA, decoyAnswerB };
         }
     }
 
@@ -36,9 +36,9 @@ public class QuestionVideo : Question
         PanelVideo panelVideo = PanelVideo.instance;
 
         // Set the correct graphic for this answer.
-        VideoClip[] arrAnswers = answers.GetAnswersArray();
+        String[] arrAnswers = answers.GetAnswersArray();
         
-        Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex].transform.GetComponent<VideoPlayer>().clip = arrAnswers[_i];
+        Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex].transform.GetComponent<VideoPlayer>().url = arrAnswers[_i];
         StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
         //TODO play the video...
         Quiz.instance.questionPanels.video.GetComponent<PanelVideo>().videoButtons[buttonIndex].transform.GetComponent<VideoPlayer>().Play();

@@ -7,9 +7,13 @@ using UnityEngine.UI;
 public class QuestionImage : Question {
      [Serializable]
     public class Answers {
+        public static QuestionImage instance;
         public string correctAnswer;
         public string decoyAnswerA;
         public string decoyAnswerB;
+
+        public string answerFeedback;
+
 
         public Sprite correctAnswerImage;
         public Sprite decoyImageA;
@@ -27,14 +31,28 @@ public class QuestionImage : Question {
         {
             return new Sprite[] { correctAnswerImage, decoyImageA, decoyImageB };
         }
+
+    }
+
+    public void Start()
+    {
+        instance = this;
     }
 
     public Answers answers;
+
+    public string GetFeedBackImage()
+        {
+            return answers.answerFeedback;
+        }
 
     public override void AskQuestion() {
         Debug.Log("AskQuestion");
         base.AskQuestion();
         // TODO: Turn the required panel on.
+        Quiz quiz = Quiz.instance;
+      
+  
         EnablePanel();
     }
 

@@ -14,7 +14,8 @@ public class Question : ScriptableObject {
 
         Quiz quiz = Quiz.instance;
         
-        quiz.txtQuestion.text = quiz.questions[quiz.progress].question;
+        //This does not find the....
+       // quiz.txtQuestion.text = quiz.questions[quiz.progress].question;
             
         // Shuffle answers.
         List<int> ints = new List<int> { 0, 1, 2 };

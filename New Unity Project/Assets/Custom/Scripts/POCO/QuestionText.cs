@@ -11,9 +11,15 @@ public class QuestionText : Question {
         public string correctAnswer;
         public string decoyAnswerA;
         public string decoyAnswerB;
+        public String feedBack;
 
         public string[] GetAnswersArray() {
             return new string[] { correctAnswer, decoyAnswerA, decoyAnswerB };
+        }
+
+        public string GetFeedBack()
+        {
+            return feedBack;
         }
     }
     
@@ -21,6 +27,7 @@ public class QuestionText : Question {
 
     public override void AskQuestion() {
         base.AskQuestion();
+        Quiz quiz = Quiz.instance;
     }
 
     public override void AssignAnswer(int buttonIndex, int _i) {

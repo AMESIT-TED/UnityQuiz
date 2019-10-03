@@ -8,6 +8,7 @@ public class PanelVideo : MonoBehaviour
 
  public static PanelVideo instance;
  public Button[] videoButtons;
+    public Text textQuestion;
 
 
 
@@ -15,6 +16,9 @@ public class PanelVideo : MonoBehaviour
     {
         instance = this;
         videoButtons = Quiz.instance.questionPanels.video.GetComponentsInChildren<Button>(true);
+
+        Quiz quiz = Quiz.instance;
+        textQuestion.text = quiz.questions[quiz.progress-1].question;
     }
 
 

@@ -12,10 +12,16 @@ public class QuestionVideo : Question
         public String correctAnswer;
         public String decoyAnswerA;
         public String decoyAnswerB;
+        public string answerFeedback;
 
         public String[] GetAnswersArray()
         {
-            return new String[] { correctAnswer, decoyAnswerA, decoyAnswerB };
+            return new String[] { correctAnswer, decoyAnswerA, decoyAnswerB};
+        }
+
+        public String GetFeedBack()
+        {
+            return answerFeedback;
         }
     }
 

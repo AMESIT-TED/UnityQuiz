@@ -22,18 +22,12 @@ public class Quiz : MonoBehaviour {
     public FinishScreen finishScreen;
     public Button btnStart;
 
-    public Text txtQuestion;
+  
     public Text txtQuestionCount;
 
     public bool isAnswered { get; set; }
 
-    public enum QuestionType {
-        Text,
-        Image,
-        Video
-    }
-
-    public QuestionType type;
+ 
 
     public int progress    { get; set; }
     public int answerCount { get; set; }

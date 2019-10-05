@@ -11,19 +11,38 @@ public class QuestionText : Question {
         public string correctAnswer;
         public string decoyAnswerA;
         public string decoyAnswerB;
-        public String feedBack;
+        public string feedBack;
 
+
+        public static QuestionText instance;
         public string[] GetAnswersArray() {
             return new string[] { correctAnswer, decoyAnswerA, decoyAnswerB };
         }
 
-        public string GetFeedBack()
-        {
-            return feedBack;
+        public string GetTextFeedBack(){
+            return  feedBack;
         }
+
+     
     }
     
+
+    void Awake()
+    {
+        instance = this;
+
+        ///If i get the wrong answer on this question i send it to the feedback list.
+
+
+
+
+
+    }
     public Answers answers;
+
+    public void SendFeedback(){
+        Quiz.instance.feedbackList.Add("Hey you are wrong");
+    }
 
     public override void AskQuestion() {
         base.AskQuestion();

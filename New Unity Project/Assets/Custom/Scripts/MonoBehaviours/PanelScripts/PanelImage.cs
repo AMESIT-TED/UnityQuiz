@@ -18,7 +18,6 @@ public class PanelImage : MonoBehaviour
      Quiz quiz = Quiz.instance;
     question.text = quiz.questions[quiz.progress-1].question;
         
-        FinishScreen.instance.PresentFeedBack(QuestionImage.instance.)
-
+        
     }
 }

@@ -2,6 +2,7 @@
 using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
+using System.Collections.Generic;
 
 public class Quiz : MonoBehaviour {
     [Serializable]
@@ -31,6 +32,8 @@ public class Quiz : MonoBehaviour {
 
     public int progress    { get; set; }
     public int answerCount { get; set; }
+
+    public List<string> feedbackList = new List<string>();
 
     private void Awake()
     {
@@ -78,6 +81,7 @@ public class Quiz : MonoBehaviour {
         gameObject.SetActive(false);
         finishScreen.gameObject.SetActive(true);
         Text _finishText = finishScreen.GetComponentInChildren<Text>();
+      
 
         Debug.Log("Fin");
         if (answerCount == questions.Length) {
@@ -85,7 +89,12 @@ public class Quiz : MonoBehaviour {
             Debug.Log("Win");
         } else {
             _finishText.text = "Lose";
+
             Debug.Log("Lose");
+            //Place Feedback....
+            //May have to be delayed after
+            //Stack all feedbackhere.....SSS
+
         }
     }
 }

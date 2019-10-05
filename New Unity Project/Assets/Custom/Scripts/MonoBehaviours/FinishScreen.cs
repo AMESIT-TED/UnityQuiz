@@ -12,9 +12,10 @@ public class FinishScreen : MonoBehaviour, IPointerDownHandler {
         instance = this;
     }
 
-    public void PresentFeedBack(string _feedback)
+    public  void PresentFeedBack(string _feedback)
     {
         txtfeedBack.text = _feedback.ToString();
+        Debug.Log("Yay");
     }
   
 

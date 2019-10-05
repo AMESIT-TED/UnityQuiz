@@ -39,7 +39,7 @@ private void SwapVideoContent(VideoPreview _videoPreview){
   //use this method to switch the contents 
     _videoPreview.GetComponent<VideoPlayer>().Play();
     _videoPreview.GetComponentInChildren<Text>().text = GetComponentInChildren<Text>().text;
-    Debug.Log("Yay");
+   
 }
 
 }

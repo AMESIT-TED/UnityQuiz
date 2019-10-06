@@ -19,9 +19,7 @@ public class QuestionText : Question {
             return new string[] { correctAnswer, decoyAnswerA, decoyAnswerB };
         }
 
-        public string GetTextFeedBack(){
-            return  feedBack;
-        }
+       
 
      
     }
@@ -40,9 +38,7 @@ public class QuestionText : Question {
     }
     public Answers answers;
 
-    public void SendFeedback(){
-        Quiz.instance.feedbackList.Add("Hey you are wrong");
-    }
+   
 
     public override void AskQuestion() {
         base.AskQuestion();
@@ -59,6 +55,15 @@ public class QuestionText : Question {
         Quiz.instance.questionPanels.text.GetComponent<PanelText>().textButtons[buttonIndex].transform.GetChild(0).GetComponent<Text>().text   =   arrAnswers[_i];
 
         StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.text.GetComponent<PanelText>().textButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
+    }
+
+    public override void IncorrectAnswer()
+    {
+        base.IncorrectAnswer();
+
+
+        FinishScreen.instance.feedBackList.Add(answers.feedBack);
+
     }
 
     protected override void EnablePanel() {

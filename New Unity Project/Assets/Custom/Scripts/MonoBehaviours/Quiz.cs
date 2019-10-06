@@ -33,7 +33,6 @@ public class Quiz : MonoBehaviour {
     public int progress    { get; set; }
     public int answerCount { get; set; }
 
-    public List<string> feedbackList = new List<string>();
 
     private void Awake()
     {
@@ -88,8 +87,8 @@ public class Quiz : MonoBehaviour {
             _finishText.text = "win";
             Debug.Log("Win");
         } else {
+            FinishScreen.instance.PresentFeedBack();
             _finishText.text = "Lose";
-
             Debug.Log("Lose");
             //Place Feedback....
             //May have to be delayed after

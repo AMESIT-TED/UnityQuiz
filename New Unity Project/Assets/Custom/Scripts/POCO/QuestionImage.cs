@@ -41,13 +41,10 @@ public class QuestionImage : Question {
 
     public Answers answers;
 
-    public string GetFeedBackImage()
-        {
-            return answers.answerFeedback;
-        }
+  
 
     public override void AskQuestion() {
-        Debug.Log("AskQuestion");
+
         base.AskQuestion();
         // TODO: Turn the required panel on.
         Quiz quiz = Quiz.instance;
@@ -70,6 +67,17 @@ public class QuestionImage : Question {
 
 
         StaticMethods.AssignButtonAction(Quiz.instance.questionPanels.image.GetComponent<PanelImage>().imageButtons[buttonIndex], (_i == 0) ? (UnityAction)CorrectAnswer : IncorrectAnswer);
+
+      
+    }
+
+    public override void IncorrectAnswer()
+    {
+        base.IncorrectAnswer();
+      
+       
+       FinishScreen.instance.feedBackList.Add(answers.answerFeedback);
+
     }
 
     protected override void EnablePanel() {

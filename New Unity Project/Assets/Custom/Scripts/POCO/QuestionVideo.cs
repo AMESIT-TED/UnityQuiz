@@ -19,10 +19,7 @@ public class QuestionVideo : Question
             return new String[] { correctAnswer, decoyAnswerA, decoyAnswerB};
         }
 
-        public String GetFeedBack()
-        {
-            return answerFeedback;
-        }
+      
     }
 
     public Answers answers;
@@ -53,6 +50,15 @@ public class QuestionVideo : Question
 
         // Target the current button and assigns the text that matches it's answer.
         //  quiz.answerButtons[buttonIndex].transform.GetChild(0).GetComponent<VideoPlayer>().clip = arrAnswers[_i];
+    }
+
+    public override void IncorrectAnswer()
+    {
+        base.IncorrectAnswer();
+
+
+        FinishScreen.instance.feedBackList.Add(answers.answerFeedback);
+
     }
 
     protected override void EnablePanel()

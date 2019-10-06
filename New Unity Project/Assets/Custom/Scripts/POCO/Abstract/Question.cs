@@ -49,9 +49,9 @@ public class Question : ScriptableObject {
     }
 
 
-    public void IncorrectAnswer() {
+    public virtual void IncorrectAnswer() {
         Quiz.instance.isAnswered = true;
-        Quiz.instance.feedbackList.Add(QuestionText.instance.ans)
+        
     }
 
     //private void DebugAnswers(List<int> ints) {

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: Who is having a good day?
   answers:
-    correctAnswer: https://firebasestorage.googleapis.com/v0/b/safety-n-action-refresher.appspot.com/o/HarnessVideos%2FMVI_5154.MOV?alt=media&token=8e7ee226-3039-4f09-9e06-39b5673f259f
-    decoyAnswerA: https://firebasestorage.googleapis.com/v0/b/safety-n-action-refresher.appspot.com/o/HarnessVideos%2FMVI_5154.MOV?alt=media&token=8e7ee226-3039-4f09-9e06-39b5673f259f
-    decoyAnswerB: https://firebasestorage.googleapis.com/v0/b/safety-n-action-refresher.appspot.com/o/HarnessVideos%2FMVI_5154.MOV?alt=media&token=8e7ee226-3039-4f09-9e06-39b5673f259f
+    correctAnswer: 
+    decoyAnswerA: 
+    decoyAnswerB: 
+    answerFeedback: Learn video

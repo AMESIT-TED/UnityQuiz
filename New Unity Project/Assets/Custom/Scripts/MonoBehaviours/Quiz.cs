@@ -88,6 +88,7 @@ public class Quiz : MonoBehaviour {
             Debug.Log("Win");
         } else {
             FinishScreen.instance.PresentFeedBack();
+            Debug.Log(answerCount);
             _finishText.text = "Lose";
             Debug.Log("Lose");
             //Place Feedback....

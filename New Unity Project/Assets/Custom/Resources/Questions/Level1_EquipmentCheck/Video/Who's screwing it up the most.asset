@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   question: Who is having a good day?
   answers:
-    correctAnswer: 
+    correctAnswer: huehu
     decoyAnswerA: 
     decoyAnswerB: 
     answerFeedback: Learn video
